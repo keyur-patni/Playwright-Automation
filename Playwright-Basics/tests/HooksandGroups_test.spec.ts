@@ -17,12 +17,8 @@ test.describe("All Tests", () => {
 
   test("homepage", async ({ page }) => {
     await page.locator('[data-test="add-to-cart-sauce-labs-backpack"]').click();
-    await page
-      .locator('[data-test="add-to-cart-sauce-labs-bike-light"]')
-      .click();
-    await page
-      .locator('[data-test="add-to-cart-sauce-labs-bolt-t-shirt"]')
-      .click();
+    await page.locator('[data-test="add-to-cart-sauce-labs-bike-light"]').click();
+    await page.locator('[data-test="add-to-cart-sauce-labs-bolt-t-shirt"]').click();
     await page.locator('[data-test="item-1-title-link"]').click();
     await page.locator('[data-test="back-to-products"]').click();
     await page.locator('[data-test="item-5-title-link"]').click();
