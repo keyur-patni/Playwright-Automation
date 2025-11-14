@@ -1,7 +1,7 @@
 import { test } from "@playwright/test";
-import { LoginPage } from "../pages/LoginPage";
-import { AddToCartPage } from "../pages/AddToCartPage";
-import { CheckoutPage } from "../pages/CheckoutPage";
+import { LoginPage } from "../../pages/LoginPage";
+import { AddToCartPage } from "../../pages/AddToCartPage";
+import { CheckoutPage } from "../../pages/CheckoutPage";
 
 test("complete checkout for a single item", async ({ page }) => {
   const login = new LoginPage(page);

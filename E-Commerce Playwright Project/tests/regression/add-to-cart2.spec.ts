@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
-import { LoginPage } from "../pages/LoginPage";
-import { AddToCartPage } from "../pages/AddToCartPage";
+import { LoginPage } from "../../pages/LoginPage";
+import { AddToCartPage } from "../../pages/AddToCartPage";
 
 test.describe("Add To Cart 2", async () => {
   test("should be able to add specific item", async ({ page }) => {
