@@ -6,11 +6,18 @@ test.describe("Add To Cart 2", async () => {
   test("should be able to add specific item", async ({ page }) => {
     const login = new LoginPage(page);
     const cart = new AddToCartPage(page);
-    // login
+
+    // Login
     await login.gotoLoginPage();
     await login.login("standard_user", "secret_sauce");
-    // add an item
+
+    // Add an item
     await cart.addItemToCart("Sauce Labs Bike Light");
+
+    // Go to cart
+    await cart.goToCart();
+
+    // Assert item was added successfully
     await cart.assertItemInCart("Sauce Labs Bike Light");
   });
 });
