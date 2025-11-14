@@ -4,27 +4,35 @@ export class AddToCartPage {
   readonly page: Page;
   readonly cartIcon: Locator;
   readonly checkoutButton: Locator;
-  readonly cartItem: Locator;
 
   constructor(page: Page) {
     this.page = page;
     this.cartIcon = page.locator(".shopping_cart_link");
     this.checkoutButton = page.getByRole("button", { name: "Checkout" });
-    this.cartItem = page.locator(".cart_item");
   }
 
-  async addItemToCart(itemName: string) {
-    const productCard = this.page.locator(".inventory_item").filter({ hasText: itemName });
+  async addItemToCart(itemNames: string | string[]) {
+    const items: string[] = Array.isArray(itemNames) ? itemNames : [itemNames];
 
-    await productCard.getByRole("button", { name: "Add to cart" }).click();
+    for (const itemName of items) {
+      const productCard = this.page.locator(".inventory_item").filter({ hasText: itemName });
+
+      await productCard.getByRole("button", { name: "Add to cart" }).click();
+    }
+  }
+
+  async assertItemInCart(itemNames: string | string[]) {
+    const items: string[] = Array.isArray(itemNames) ? itemNames : [itemNames];
+
+    for (const itemName of items) {
+      const row = this.page.locator(".cart_item").filter({ hasText: itemName });
+
+      await expect(row).toContainText(itemName);
+    }
   }
 
   async goToCart() {
     await this.cartIcon.click();
-  }
-
-  async assertItemInCart(itemName: string) {
-    await expect(this.cartItem).toContainText(itemName);
   }
 
   async proceedToCheckout() {
